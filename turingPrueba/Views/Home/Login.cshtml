@@ -1,0 +1,144 @@
+@model HomeViewModel
+
+<head>
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>	
+<div class="body">
+		<div class="veen">
+			<div class="login-btn splits">
+				<p>¿Tiene una cuenta?</p>
+				<button class="active">Inicio de sesión</button>
+			</div>
+			<div class="rgstr-btn splits">
+				<p>¿No cuenta con una cuenta?</p>
+				<button>Registrarme</button>
+			</div>
+			<div class="wrapper">
+				<form id="login" tabindex="500">
+					<h3>Inicio de Sesión</h3>
+					<div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Correo</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Contraseña</label>
+                    </div>
+					<div class="submit">
+						<button class="dark">acceder</button>
+					</div>
+				</form>
+				<form id="register"  tabindex="502" asp-controller="Home" asp-action="SaveUser
+				" method="post">
+					<h3>Registro</h3>
+					<div class="form-floating mb-3">
+                        <input type="text" class="form-control" asp-for="Name" placeholder="name@example.com">
+                        <label >Nombre</label>
+						<span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="Role" asp-items="@Model.RoleList">
+                            <option value="">Seleccione una opción</option>                                                       
+                        </select>
+                        <label for="floatingSelect">Tipo de usuario</label>
+						<span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" asp-for="Email" placeholder="name@example.com">
+                        <label for="floatingInput">Email</label>
+						<span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" asp-for="Password" class="form-control"placeholder="Password">
+                        <label >Contraseña</label>
+						<span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+					<div class="submit">
+						<button class="dark">Regitrarse</button>
+					</div>
+				</form>
+			</div>
+		</div>	
+	</div>
+@section Scripts
+{
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/login.js"></script>
+<script>
+	let response = 0;
+    let type = 0;
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+	response = @(TempData["response"] == null ? "null" : TempData["response"]);
+	type = response = @(TempData["type"] == null ? "null" : TempData["type"]);
+	switch (type) {
+        case 1:
+            if (response > 0) {
+                Toast.fire({
+                    icon: 'success',
+                    title: '¡Registro exitoso!'
+                })
+            } else if (response === 0) {
+                Toast.fire({
+                    icon: 'error',
+                    title: '¡Algo ocurrió, intenta nuevamente!'
+                })
+            }
+            break;
+        case 2:
+            if (response > 0) {
+                Toast.fire({
+                    icon: 'success',
+                    title: '¡Actualización exitosa!'
+                })
+            } else if (response === 0) {
+                Toast.fire({
+                    icon: 'error',
+                    title: '¡Algo ocurrió, intenta nuevamente!'
+                })
+            }
+            break;
+        case 3:
+            if (response > 0) {
+                Toast.fire({
+                    icon: 'success',
+                    title: '¡Cambio de estatus exitoso!'
+                })
+            } else if (response === 0) {
+                Toast.fire({
+                    icon: 'error',
+                    title: '¡Algo ocurrió, intenta nuevamente!'
+                })
+            }
+            break;
+        case 4:
+            if (response > 0) {
+                Toast.fire({
+                    icon: 'success',
+                    title: '¡Bienvenido!'
+                })
+            }
+            break;
+        case 5:
+            Toast.fire({
+                icon: 'error',
+                title: '¡No se encontro el recurso!'
+            })
+            break;
+        default:
+            break;
+    }
+</script>
+}

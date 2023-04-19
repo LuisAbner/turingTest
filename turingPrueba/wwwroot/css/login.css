@@ -1,0 +1,152 @@
+.body{
+  transition: all .5s;
+  padding: 1px;
+  align-items: center;
+  justify-content: center;
+}
+.veen{
+  width: 70%;
+  margin: 100px auto;
+  background: #025373;
+  min-height: 400px;
+  display:table;
+  position: relative;
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+}
+.veen > div {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+}
+.veen button{
+  background: #6CD9BA;  
+  display: inline-block;
+  padding: 10px 30px;
+  border: 3px solid #fff;
+  border-radius: 50px;
+  background-clip: padding-box;
+  position: relative;
+  color: #FFF;
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+  transition: all .25s;
+}
+.veen button.dark{
+  border-color: #C2D2D9;
+  background: #025373;
+}
+.veen .move button.dark{
+  border-color: #C2D2D9;
+  background: #025949;
+}
+.veen .splits p{
+  font-size: 18px;
+}
+.veen button:active{
+  box-shadow: none;			
+}
+.veen button:focus{
+  outline: none;			
+}
+.veen > .wrapper {
+  position: absolute;
+  width: 45%;
+  height: 120%;
+  top: -10%;
+  left: 5%;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+  transition: all .5s;
+  color: #303030;
+  overflow: hidden;
+}
+.veen .wrapper > form{
+  padding: 15px 30px 30px;
+  width: 100%;
+  transition: all .5s;
+  background: #fff;
+  width: 100%; 
+}
+.veen .wrapper > form:focus{
+outline: none;
+}
+.veen .wrapper #login{
+  padding-top: 20%;
+  visibility: visible;
+}
+.veen .wrapper #register{
+  transform: translateY(-80%) translateX(100%);
+  visibility: hidden;
+}
+.veen .wrapper.move #register{
+  transform: translateY(-80%) translateX(0%);
+  visibility: visible;
+}
+.veen .wrapper.move #login{
+  transform: translateX(-100%);
+  visibility: hidden;
+}
+.veen .wrapper > form > div {
+  position: relative;
+  margin-bottom: 15px;
+}
+.veen .wrapper h3{
+  margin-bottom: 25px;
+}
+
+.veen .wrapper input:focus{
+  outline: none;
+  border-color: #025373;
+}
+.veen > .wrapper.move{
+  left: 45%;
+}
+.veen > .wrapper.move input:focus{
+  border-color: #025949;
+}
+@media (max-width: 767px){
+  .veen{
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+    display: block;
+  }
+  .veen > .wrapper{
+    position: relative;
+    height: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .veen > div{
+    display: inline-block;
+  }
+  .splits{
+    width: 50%;
+    background: #fff;
+    float: left;
+  }
+  .splits button{
+    width: 100%;
+    border-radius: 0;
+    background: #C7D2D9; 
+    border: 0;
+    opacity: .7;
+  }
+  .splits button.active{
+    opacity: 1;
+  }
+  .splits button.active{
+    opacity: 1;
+    background: #025373;
+  }
+  .splits.rgstr-btn button.active{
+    background: #025949;
+  }
+  .splits p{
+    display: none;
+  }
+  .veen > .wrapper.move{
+    left: 0%;
+  }
+}
