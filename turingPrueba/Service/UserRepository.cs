@@ -41,7 +41,12 @@ namespace turingPrueba.Service
                     { 
                         dataSession.IdUser=Convert.ToInt32(reader["id_user"].ToString());
                         dataSession.Name=reader["name"].ToString();
-                        dataSession.Email=reader["email"].ToString();
+                        var email=reader["email"].ToString();
+                        if (email != null)
+                        {
+                            dataSession.Email=email;
+                        }                        
+                        dataSession.Status=(bool)reader["status"];
                         dataSession.TypeRole=reader["authority"].ToString();
                         dataSession.IdRole=Convert.ToInt32(reader["id_role"].ToString());
                     }

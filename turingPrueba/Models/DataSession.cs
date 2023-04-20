@@ -9,7 +9,7 @@ namespace turingPrueba.Models
     {
         public long IdUser{get;set;}
         public string? Name{get;set;}="";
-        public string? Email{get;set;}="";
+        public string Email{get;set;}="";
         public bool Status{get;set;}
         public string? TypeRole{get;set;}="";
         public long IdRole{get;set;}

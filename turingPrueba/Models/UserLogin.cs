@@ -10,8 +10,8 @@ namespace turingPrueba.Models
     {
         [Required(ErrorMessage = "Este es un campo obligatorio")]
         [EmailAddress(ErrorMessage = "Utiliza el formato de correo válido")]
-        public string? Email { get; set; }
+        public string? Email {get;set;}
         [Required(ErrorMessage = "Este es un campo obligatorio")]
-        public string? Password { get; set; }
+        public string? Password {get;set;}
     }
 }

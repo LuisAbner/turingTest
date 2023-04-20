@@ -842,11 +842,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\52777\\Dropbox\\Mi PC (DESKTOP-MJI0NE2)\\Documents\\turingPrueba\\turingPrueba.csproj",
+      "projectUniqueName": "C:\\Users\\52777\\Dropbox\\Mi PC (DESKTOP-MJI0NE2)\\Documents\\Turing\\turingPrueba\\turingPrueba.csproj",
       "projectName": "turingPrueba",
-      "projectPath": "C:\\Users\\52777\\Dropbox\\Mi PC (DESKTOP-MJI0NE2)\\Documents\\turingPrueba\\turingPrueba.csproj",
+      "projectPath": "C:\\Users\\52777\\Dropbox\\Mi PC (DESKTOP-MJI0NE2)\\Documents\\Turing\\turingPrueba\\turingPrueba.csproj",
       "packagesPath": "C:\\Users\\52777\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\52777\\Dropbox\\Mi PC (DESKTOP-MJI0NE2)\\Documents\\turingPrueba\\obj\\",
+      "outputPath": "C:\\Users\\52777\\Dropbox\\Mi PC (DESKTOP-MJI0NE2)\\Documents\\Turing\\turingPrueba\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\52777\\AppData\\Roaming\\NuGet\\NuGet.Config",

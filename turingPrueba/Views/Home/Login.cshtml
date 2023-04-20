@@ -16,22 +16,23 @@
 				<button>Registrarme</button>
 			</div>
 			<div class="wrapper">
-				<form id="login" tabindex="500">
+				<form id="login" tabindex="500" asp-controller="Home" asp-action="Login" method="post">
 					<h3>Inicio de Sesión</h3>
 					<div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Correo</label>
+                        <input type="email" class="form-control" asp-for="userLogin.Email" placeholder="name@example.com">
+                        <label >Correo</label>
+                        <span asp-validation-for="userLogin.Email" class="text-danger"></span>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Contraseña</label>
+                        <input type="password" class="form-control" asp-for="userLogin.Password" placeholder="Password">
+                        <label >Contraseña</label>
+                        <span asp-validation-for="userLogin.Password" class="text-danger"></span>
                     </div>
 					<div class="submit">
 						<button class="dark">acceder</button>
 					</div>
 				</form>
-				<form id="register"  tabindex="502" asp-controller="Home" asp-action="SaveUser
-				" method="post">
+				<form id="register"  tabindex="502" asp-controller="Home" asp-action="SaveUser" method="post">
 					<h3>Registro</h3>
 					<div class="form-floating mb-3">
                         <input type="text" class="form-control" asp-for="Name" placeholder="name@example.com">
@@ -82,63 +83,30 @@
         }
     });
 	response = @(TempData["response"] == null ? "null" : TempData["response"]);
-	type = response = @(TempData["type"] == null ? "null" : TempData["type"]);
-	switch (type) {
-        case 1:
-            if (response > 0) {
-                Toast.fire({
-                    icon: 'success',
-                    title: '¡Registro exitoso!'
-                })
-            } else if (response === 0) {
-                Toast.fire({
-                    icon: 'error',
-                    title: '¡Algo ocurrió, intenta nuevamente!'
-                })
-            }
-            break;
-        case 2:
-            if (response > 0) {
-                Toast.fire({
-                    icon: 'success',
-                    title: '¡Actualización exitosa!'
-                })
-            } else if (response === 0) {
-                Toast.fire({
-                    icon: 'error',
-                    title: '¡Algo ocurrió, intenta nuevamente!'
-                })
-            }
-            break;
-        case 3:
-            if (response > 0) {
-                Toast.fire({
-                    icon: 'success',
-                    title: '¡Cambio de estatus exitoso!'
-                })
-            } else if (response === 0) {
-                Toast.fire({
-                    icon: 'error',
-                    title: '¡Algo ocurrió, intenta nuevamente!'
-                })
-            }
-            break;
-        case 4:
-            if (response > 0) {
-                Toast.fire({
-                    icon: 'success',
-                    title: '¡Bienvenido!'
-                })
-            }
-            break;
-        case 5:
+	type  = @(TempData["type"] == null ? "null" : TempData["type"]);
+	
+    if (response === 0) {
+        Toast.fire({
+            icon: 'error',
+            title: 'Usuario y/o contraseña incorrecta'
+        })
+    }else if (response === 1){
+        Toast.fire({
+            icon: 'error',
+            title: 'Usuario inactivo, pongase en comunicación con el administrador del sistema'
+        })
+    }else if (type!=="null"){
+        if (response > 0) {
+            Toast.fire({
+                icon: 'success',
+                title: '¡Registro exitoso!'
+            })
+        } else if (response === 0) {
             Toast.fire({
                 icon: 'error',
-                title: '¡No se encontro el recurso!'
+                title: '¡Algo ocurrió, intenta nuevamente!'
             })
-            break;
-        default:
-            break;
+        }
     }
 </script>
 }
