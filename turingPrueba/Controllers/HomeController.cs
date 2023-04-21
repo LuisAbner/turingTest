@@ -56,8 +56,8 @@ public class HomeController : Controller
             {
                 case "writer":
                     return RedirectToAction("Writer", "Index");
-                case "DIRECTOR_AREA":
-                    return RedirectToAction("PeriodArea", "Period");                
+                case "admin":
+                    return RedirectToAction("Admin", "Index");                
                 default:
                     return RedirectToAction("Login");
             }

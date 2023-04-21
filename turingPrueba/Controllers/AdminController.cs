@@ -47,14 +47,14 @@ namespace turingPrueba.Controllers
             return model;
         }
         [ValidateSession]
-        [Authorize(Roles = "writer")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
             var model = await GetAdminViewModel();
             return View(model);
         }
         [ValidateSession]
-        [Authorize(Roles = "writer")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddCategory(Category category)
         {
             var model = await GetAdminViewModel();
@@ -68,7 +68,7 @@ namespace turingPrueba.Controllers
             return RedirectToAction("Index", model);
         }
         [ValidateSession]
-        [Authorize(Roles = "writer")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddEditorial(Editorial editorial)
         {
             var model = await GetAdminViewModel();
