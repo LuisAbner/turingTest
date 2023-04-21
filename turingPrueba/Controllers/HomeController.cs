@@ -49,6 +49,19 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Login()
     {
+        
+        if (HttpContext.Session.Get<long>(SessionId) != 0)
+        {
+            switch (HttpContext.Session.Get<string>(SessionTypeRole))
+            {
+                case "writer":
+                    return RedirectToAction("Writer", "Index");
+                case "DIRECTOR_AREA":
+                    return RedirectToAction("PeriodArea", "Period");                
+                default:
+                    return RedirectToAction("Login");
+            }
+        }
         var model = await GetHomeViewModel();
         return View(model);
     }
@@ -98,6 +111,10 @@ public class HomeController : Controller
                             TempData["type"] = 4;
                             TempData["response"] = id;
                             return RedirectToAction("Index", "Writer");
+                        case "admin":
+                            TempData["type"] = 4;
+                            TempData["response"] = id;
+                            return RedirectToAction("Index", "Admin");
                         default:
                             return RedirectToAction("Login");
                     }
@@ -134,6 +151,16 @@ public class HomeController : Controller
     public IActionResult Privacy()
     {
         return View();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SingOff()
+    {
+        HttpContext.Session.Clear();
+        #region AUTENTICACTION
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        #endregion
+        return RedirectToAction("Login");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

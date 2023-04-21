@@ -1,0 +1,258 @@
+@model AdminViewModel
+<link rel="stylesheet" href="~/css/scroll.css" />
+<link rel="stylesheet" href="~/css/card.css" />
+<section class="section-primary" style="background-color: #112E40; padding: 25px;">
+    <figure class="text-center" style="color:#FFF">
+        <blockquote class="blockquote">
+            <p>Aplicación libreria</p>
+        </blockquote>
+        <figcaption class="blockquote-footer" style="color:#FFF">
+            Visualiza libros, gestiona categorias y editoriales
+        </figcaption>
+    </figure>
+    <div class="row">
+        <div class="col-md-6  col-12">
+            <div class="panel panel-primary" id="result_panel">
+                <div class="row">
+                    <div class="panel-heading col-md-7  col-12">
+                        <h3 class="panel-title">Categorias</h3>
+                    </div>
+                    <button class="btn-registrer col-md-4  col-12" type="button" data-bs-toggle="modal"
+                        data-bs-target="#categoryModal">Nueva categoria
+                    </button>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @if (Model.Categories.Count() > 0)
+                        {
+
+                            @foreach (var category in Model.Categories)
+                            {
+
+                                <li class="list-group-item">
+                                    <strong>@category.Name</strong>
+                                </li>
+
+                            }
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="col-md-6  col-12">
+            <div class="panel panel-primary" id="result_panel">
+                <div class="row">
+                    <div class="panel-heading col-md-7  col-12">
+                        <h3 class="panel-title">Editoriales</h3>
+                    </div>
+                    <button class="btn-registrer col-md-4  col-12" type="button" data-bs-toggle="modal"
+                        data-bs-target="#editorialModal">Nueva editorial
+                    </button>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @if (Model.Editorials.Count() > 0)
+                        {
+
+                            @foreach (var editorial in Model.Editorials)
+                            {
+
+                                <li class="list-group-item">
+                                    <strong>@editorial.Name</strong>
+                                </li>
+
+                            }
+
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="AddCategory" asp-controller="Admin">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Nombre Categoria</label>
+                            <input type="text" class="form-control" asp-for="Name" />
+                            <span class="text-danger" asp-validation-for="Name" val></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close-modal" data-bs-dismiss="modal">cerrar</button>
+                    <button type="submit" class="btn-registrer">guardar</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<section style="background-color: #C7D2D9; padding: 25px;">
+  <div class="row">
+    @if(Model.BooksByCategories.Count()>0){
+      @foreach(var category in Model.BooksByCategories){
+        <p class="h3">@category.Name</p>
+        <hr class="hr" />
+        @foreach(var book in category.books){
+          <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+            <div class="card">
+              <img src="https://www.elindependiente.com/wp-content/uploads/2022/12/Tostonazo-Santiago-Lorenzo-421x660.png"
+                class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">@book.Title</h5>
+                <p class="lead">
+                  @book.Subtitle
+                </p>
+                
+                <div class="row">
+                  <p class="col-md-6"><strong>@book.EditorialId</strong></p>
+                  <p class="col-md-6"><strong>@book.UserId</strong></p>
+                </div>
+                <div class="row">
+                  <p class="col-md-6">ISBN: @book.Isbn</p>
+                  <p class="col-md-6">Paginas: @book.Pages</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    }
+    
+  </div>
+
+</section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="editorialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="AddEditorial" asp-controller="Admin">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Editorial</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Nombre Editorial</label>
+                            <input type="text" class="form-control" asp-for="Editorial.Name" />
+                            <span class="text-danger" asp-validation-for="Editorial.Name" val></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close-modal" data-bs-dismiss="modal">cerrar</button>
+                    <button type="submit" class="btn-registrer">guardar</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+<script src="~/js/scroll.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+<script>
+  let response = 0;
+  let type = 0;
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 7000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+  $(document).ready(function () {
+
+  })
+
+  response = @(TempData["response"] == null ? "null" : TempData["response"]);
+  type = @(TempData["type"] == null ? "null" : TempData["type"]);
+
+
+  switch (type) {
+    case 1:
+      if (response > 0) {
+        Toast.fire({
+          icon: 'success',
+          title: '¡Registro exitoso!'
+        })
+      } else if (response === 0) {
+        Toast.fire({
+          icon: 'error',
+          title: '¡Algo ocurrió, intenta nuevamente!'
+        })
+      }
+      break;
+    case 2:
+      if (response > 0) {
+        Toast.fire({
+          icon: 'success',
+          title: '¡Actualización exitosa!'
+        })
+      } else if (response === 0) {
+        Toast.fire({
+          icon: 'error',
+          title: '¡Algo ocurrió, intenta nuevamente!'
+        })
+      }
+      break;
+    case 3:
+      if (response > 0) {
+        Toast.fire({
+          icon: 'success',
+          title: '¡Eliminación exitosa!'
+        })
+      } else if (response === 0) {
+        Toast.fire({
+          icon: 'error',
+          title: '¡Algo ocurrió, intenta nuevamente!'
+        })
+      }
+      break;
+    case 4:
+      if (response > 0) {
+        Toast.fire({
+          icon: 'success',
+          title: '¡Bienvenido  !'
+        })
+      }
+      break;
+    case 5:
+      Toast.fire({
+        icon: 'error',
+        title: '¡No se encontro el recurso!'
+      })
+      break;
+    default:
+      break;
+  }
+  </script>
+}

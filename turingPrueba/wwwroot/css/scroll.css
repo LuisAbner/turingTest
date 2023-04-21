@@ -1,0 +1,14 @@
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.panel-title{
+    color: #fff;
+}
+
+.section-primary{
+    background-color: #112E40; padding: 25px;
+}

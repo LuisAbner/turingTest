@@ -1,0 +1,66 @@
+@model IndexWriterViewModel
+
+<section style="background-color: #112E40; padding: 25px;">
+    <div class="container ">
+        <h1 class="display-6" style="color: #FFFF;">Actuaizar Libro</h1>
+        <div class="card cascading-right" style="
+            background:#FFFF;
+            backdrop-filter: blur(30px);
+            padding: 50px;
+            ">
+            <form asp-controller="Writer" asp-action="UpdateBook" method="post">
+                <input hidden asp-for="IdBook">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Titulo</label>
+                        <input type="text" class="form-control" asp-for="Title" />
+                        <span class="text-danger" asp-validation-for="Title" val></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Subtitulo</label>
+                        <input type="text" class="form-control" asp-for="Subtitle" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>No. Paginas</label>
+                        <input type="number" class="form-control" asp-for="Pages" />
+                        <span class="text-danger" asp-validation-for="Pages"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label>ISBN</label>
+                        <input type="text" class="form-control" asp-for="Isbn" />
+                        <span class="text-danger" asp-validation-for="Isbn"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Categoria</label>
+                        <select class="form-select" aria-label="Default select example" asp-for="CategoryId"
+                            asp-items="@Model.CategoryList">
+                            <option value="">Seleccione una opción</option>
+
+                        </select>
+                        <span class="text-danger" asp-validation-for="CategoryId"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Editorial</label>
+                        <select class="form-select" aria-label="Default select example" asp-for="EditorialId"
+                            asp-items="@Model.EditorialList">
+                            <option value="">Seleccione una opción</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="EditorialId"></span>
+                        <span class="text-danger"></span>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn-registrer" type="submit"
+                           >Actualizar</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</section>
